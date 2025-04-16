@@ -32,7 +32,7 @@ python heatmap_generator.py video_path.mp4
 
 ### Options
 
-- `--manual` or `-m`: Manually select court corners (useful for first-time setup)
+- `--manual` or `-m`: Manually select court corners (useful for first-time setup, but not need for given examples)
 - Add `False` as second argument to remove debugging temporary files:
 ```
 python heatmap_generator.py video_path.mp4 False
