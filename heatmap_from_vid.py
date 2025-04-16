@@ -260,7 +260,7 @@ def manually_grab_corners(vid_path):
         print("Failed to grab frame.")
         exit()
     
-    # The order is 1. Top-left, 2. Top-right, 3. Bottom-right, 4. Bottom-left
+    print("Select the corners.\nThe order is 1. Top-left, 2. Top-right, 3. Bottom-right, 4. Bottom-left")
     cv2.imshow("Select Court Corners", frame)
     cv2.setMouseCallback("Select Court Corners", click_event, (court_points, frame))
     cv2.waitKey(0)
@@ -392,12 +392,12 @@ def generate_heatmap_from_vid(video_path, debugging = True, manual = False):
 
     create_heatmap("heatmap.png", proj_points)
     
-    if not debugging and os.path.exists(tmp_path):
+    if ((not debugging) and os.path.exists(tmp_path)):
         for filename in os.listdir(tmp_path):
             file_path = os.path.join(tmp_path, filename)
             if os.path.isfile(file_path):
                 os.remove(file_path)
-        os.rmdir(path)    
+        os.rmdir(tmp_path)    
         
 def main():
     # Create argument parser
@@ -420,7 +420,7 @@ def main():
     # Generate the heatmap
     generate_heatmap_from_vid(
         video_path=args.input_vid,
-        debugging=args.debugging,
+        debugging= True if args.debugging == "True" else False,
         manual=args.manual
     )
 
